@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,20 +22,20 @@ public class PolicyHolder {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "policyHolderId", nullable = false)
 	private Integer id;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Column(name = "contactNo", nullable = false)
 	private String contactNo;
 
 	@Column(name = "address", nullable = false)
 	private String address;
-	
-	@OneToMany(mappedBy = "policyHolder")
+
+	@OneToMany(mappedBy = "policyHolder", fetch = FetchType.LAZY)
 	private List<Policy> policies;
-	
+
 }
